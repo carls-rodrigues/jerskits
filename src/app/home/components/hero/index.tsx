@@ -3,61 +3,73 @@
 import Box from "@/app/components/box/box";
 import Typography from "@/app/components/typography/typography";
 
-import {useState} from "react";
-import Image from "next/image";
+import {useEffect, useState} from "react";
+import Image, {StaticImageData} from "next/image";
 
 import HeroBg from '@/app/assets/images/home-bg.png'
-import LiverpoolLogo from '@/app/assets/images/home/liverpool-logo.png'
-import LiverpoolShirt from '@/app/assets/images/home/liverpool-shirt.png'
-import BarcelonaShirt from '@/app/assets/images/home/barcelona-shirt.png'
 import VideoImage from '@/app/assets/images/home/video.png'
 
-import BarcelonaIcon from '@/app/assets/images/home/barcelona.svg'
 import BrandNikeIcon from '@/app/assets/icons/brand-nike.svg'
-import LiverpoolIcon from '@/app/assets/images/home/liverpool.svg'
 import DarkArrow from '@/app/assets/icons/dark-arrow.svg'
 import LightArrow from '@/app/assets/icons/light-arrow.svg'
 
 
-export default function HomeHero() {
-    const items = [
-        {
-            id: 1,
-            title: 'Liverpool',
-            image: LiverpoolShirt,
-            logo: LiverpoolLogo,
-            description: ''
-        },
-        {
-            id: 2,
-            title: 'Barcelona',
-            image: BarcelonaShirt,
-            logo: LiverpoolLogo,
-            description: ''
-        }
-    ]
-    const [currentItem, setCurrentItem] = useState<typeof items[0]>(items[0])
+type HeroProps = {
+    items: Array<{
+        id: number,
+        title: string,
+        image: StaticImageData,
+        logo: StaticImageData,
+        banner: StaticImageData,
+        description: string
+    }>
+}
+
+export default function HomeHero({ items = [] }: HeroProps) {
+    const [currentItem, setCurrentItem] = useState<typeof items[0]>({} as typeof items[0])
+    const [nextItem, setNextItem] = useState<typeof items[1]>({} as typeof items[0])
+    const [loading, setLoading] = useState<boolean>(true)
 
     const handleNextItem = () => {
+        if (items.length < 1) return
+        if (items.length === 1) return setCurrentItem(items[0])
         const currentIndex = items.findIndex(item => item.id === currentItem.id)
         const nextIndex = currentIndex + 1
         if (nextIndex < items.length) {
             setCurrentItem(items[nextIndex])
+            if(nextIndex + 1 < items.length) setNextItem(items[nextIndex + 1])
+            else setNextItem(items[0])
         } else {
             setCurrentItem(items[0])
+            setNextItem(items[1])
         }
     }
 
     const handlePrevItem = () => {
+        if (items.length < 1) return
+        if (items.length === 1) return setCurrentItem(items[0])
         const currentIndex = items.findIndex(item => item.id === currentItem.id)
         const prevIndex = currentIndex - 1
         if (prevIndex >= 0) {
             setCurrentItem(items[prevIndex])
+            setNextItem(items[prevIndex + 1])
         } else {
             setCurrentItem(items[items.length - 1])
+            setNextItem(items[0])
         }
     }
-
+    
+    useEffect(() => {
+        if(items.length < 1) return
+        if(items.length === 1) return setCurrentItem(items[0])
+        if(items.length > 1) {
+            setCurrentItem(items[0])
+            setNextItem(items[1])
+        }
+        setLoading(false)
+    }, []);
+    
+    if(loading) return <Box className="w-full min-h-screen bg-neutral-light-grey" />
     return(
         <Box className="w-full h-full bg-neutral-light-grey relative overflow-x-hidden">
             <Box className="w-full h-full absolute">
@@ -68,15 +80,17 @@ export default function HomeHero() {
             </Box>
             <Box className="container m-auto min-h-screen z-50 relative max-w-1200">
                 <Box className="pt-[11.4rem]">
-                    <Image src={LiverpoolLogo} alt="liverpool-logo" />
+                    <Box className="h-81 w-60">
+                        <Image src={currentItem.logo} alt="liverpool-logo" className="w-full"/>
+                    </Box>
                 </Box>
                 <Box className="flex gap-[1rem] select-none mt-[4.8rem] flex-col">
                     <BrandNikeIcon />
                     <Typography className="text-xl uppercase font-bold leading-[3.6rem] text-neutral-white">
                         Home kit 21/22
                     </Typography>
-                    <Box className="mt-[3rem]">
-                        <LiverpoolIcon />
+                    <Box className="mt-[3rem] min-w-1106 h-252">
+                        <Image src={currentItem.banner} alt={currentItem.title} />
                     </Box>
                 </Box>
                 <Box className="flex w-full gap-[21rem] relative z-50">
@@ -93,9 +107,9 @@ export default function HomeHero() {
                             </Typography>
                         </Box>
                     </Box>
-                    <Box className="max-w-[40rem] mt-[4rem]">
+                    <Box className="w-[40rem] mt-[4rem]">
                         <Typography className="text-base text-neutral-grey font-medium">
-                            The Liverpool F.C. Stadium Home Shirt features highly breathable fabric to help keep sweat off your skin while you cheer for your team.This product is made from at least 75% recycled polyester fibres.
+                            {currentItem.description}
                         </Typography>
                         <Box className="flex w-full justify-between mt-[9.5rem]">
                             <button
@@ -123,34 +137,39 @@ export default function HomeHero() {
                         </Box>
                     </Box>
                 </Box>
-                <Box className="absolute top-[11rem] left-[29.5rem]">
+                <Box className="absolute top-[11rem] left-[29.5rem] w-580 h-725">
                     <Image src={currentItem.image} alt="" className="w-full" />
                 </Box>
-
-                <Box className="absolute w-443 h-full bg-neutral-light-grey top-0 left-[92%]">
-                    <Box className="w-full h-full bg-neutral-black/90 absolute" />
-                    <Box className="flex flex-col z-50 relative mt-[7.2rem]">
-                        <Box className="w-50 h-50">
-                            <Image src={currentItem.logo} alt="liverpool-logo" className="w-full" />
-                        </Box>
-                        <Box className="flex select-none mt-[4.8rem] flex-col">
-                            <Box className="flex items-center gap-[1rem]">
-                                <Box className="mt-[1rem]">
-                                    <BrandNikeIcon />
+                
+                {
+                    nextItem?.id && (
+                        <Box className="absolute w-443 h-full bg-neutral-light-grey top-0 left-[92%]">
+                            <Box className="w-full h-full bg-neutral-black/90 absolute" />
+                            <Box className="flex flex-col z-50 relative mt-[7.2rem]">
+                                <Box className="w-50 h-50">
+                                    <Image src={nextItem.logo} alt="liverpool-logo" className="w-full" />
                                 </Box>
-                                <Typography className="text-xl uppercase font-bold leading-[3.6rem] text-neutral-white">
-                                    Home kit 21/22
-                                </Typography>
-                            </Box>
-                            <Box>
-                                <BarcelonaIcon />
-                            </Box>
-                            <Box className="mt-[2.2rem] w-309 h-400">
-                                <Image src={BarcelonaShirt} alt="" className="w-full h-full" />
+                                <Box className="flex select-none mt-[4.8rem] flex-col">
+                                    <Box className="flex items-center gap-[1rem]">
+                                        <Box className="mt-[1rem]">
+                                            <BrandNikeIcon />
+                                        </Box>
+                                        
+                                        <Typography className="text-xl uppercase font-bold leading-[3.6rem] text-neutral-white">
+                                            Home kit 21/22
+                                        </Typography>
+                                    </Box>
+                                    <Box className="w-238 h-50">
+                                        <Image src={nextItem.banner} alt="" className="w-full h-full" />
+                                    </Box>
+                                    <Box className="mt-[2.2rem] w-309 h-400">
+                                        <Image src={nextItem.image} alt="" className="w-full h-full" />
+                                    </Box>
+                                </Box>
                             </Box>
                         </Box>
-                    </Box>
-                </Box>
+                  )
+                }
             </Box>
         </Box>
     )
