@@ -1,4 +1,4 @@
-import {createElement, HTMLAttributes, ReactNode} from "react";
+import { HTMLAttributes } from "react";
 import Box from "@/app/core/components/box/box";
 
 type IconBoxProps = {
