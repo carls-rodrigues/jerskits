@@ -1,15 +1,15 @@
 'use client'
 
-import Box from "@/app/components/box/box";
+import Box from "@/app/core/components/box/box";
 import Link from "next/link";
-import Typography from "@/app/components/typography/typography";
-import IconBox from "@/app/components/icon/icon-box";
-import Logo from "@/app/components/logo/logo";
-import MenuItem from "@/app/layout/header/components/menu-item";
+import Typography from "@/app/core/components/typography/typography";
+import IconBox from "@/app/core/components/icon/icon-box";
+import Logo from "@/app/core/components/logo/logo";
+import MenuItem from "@/app/core/layout/header/components/menu-item";
 
-import SearchIcon from "@/app/assets/icons/search.svg";
-import ShoppingBagIcon from "@/app/assets/icons/shopping-bag.svg";
-import HeartIcon from "@/app/assets/icons/heart.svg";
+import SearchIcon from "@/app/core/assets/icons/search.svg";
+import ShoppingBagIcon from "@/app/core/assets/icons/shopping-bag.svg";
+import HeartIcon from "@/app/core/assets/icons/heart.svg";
 
 export default function Header() {
     const hasUser = false

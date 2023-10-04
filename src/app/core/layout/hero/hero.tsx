@@ -1,5 +1,5 @@
 import {ReactNode} from "react";
-import Box from "@/app/components/box/box";
+import Box from "@/app/core/components/box/box";
 
 type HeroProps = {
     children: ReactNode

@@ -1,17 +1,17 @@
 'use client'
 
-import Box from "@/app/components/box/box";
-import Typography from "@/app/components/typography/typography";
+import Box from "@/app/core/components/box/box";
+import Typography from "@/app/core/components/typography/typography";
 
 import {useEffect, useState} from "react";
 import Image, {StaticImageData} from "next/image";
 
-import HeroBg from '@/app/assets/images/home-bg.png'
-import VideoImage from '@/app/assets/images/home/video.png'
+import HeroBg from '@/app/core/assets/images/home-bg.png'
+import VideoImage from '@/app/core/assets/images/home/video.png'
 
-import BrandNikeIcon from '@/app/assets/icons/brand-nike.svg'
-import DarkArrow from '@/app/assets/icons/dark-arrow.svg'
-import LightArrow from '@/app/assets/icons/light-arrow.svg'
+import BrandNikeIcon from '@/app/core/assets/icons/brand-nike.svg'
+import DarkArrow from '@/app/core/assets/icons/dark-arrow.svg'
+import LightArrow from '@/app/core/assets/icons/light-arrow.svg'
 
 
 type HeroProps = {

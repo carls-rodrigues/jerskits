@@ -1,12 +1,12 @@
-import Container from "@/app/components/container/container";
-import Hero from "@/app/layout/hero/hero";
-import HomeHero from "@/app/home/components/hero";
-import LiverpoolShirt from "@/app/assets/images/home/liverpool-shirt.png";
-import LiverpoolLogo from "@/app/assets/images/home/liverpool-logo.png";
-import BarcelonaShirt from "@/app/assets/images/home/barcelona-shirt.png";
-import BarcelonaLogo from "@/app/assets/images/home/barcelona-logo.png";
-import LiverpoolBanner from '@/app/assets/images/home/liverpool-banner.png';
-import BarcelonaBanner from '@/app/assets/images/home/barcelona-banner.png';
+import Container from "@/app/core/components/container/container";
+import Hero from "@/app/core/layout/hero/hero";
+import HomeHero from "@/app/features/home/components/hero";
+import LiverpoolShirt from "@/app/core/assets/images/home/liverpool-shirt.png";
+import LiverpoolLogo from "@/app/core/assets/images/home/liverpool-logo.png";
+import BarcelonaShirt from "@/app/core/assets/images/home/barcelona-shirt.png";
+import BarcelonaLogo from "@/app/core/assets/images/home/barcelona-logo.png";
+import LiverpoolBanner from '@/app/core/assets/images/home/liverpool-banner.png';
+import BarcelonaBanner from '@/app/core/assets/images/home/barcelona-banner.png';
 
 export default function Home() {
   const items = [

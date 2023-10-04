@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Typography from "@/app/components/typography/typography";
+import Typography from "@/app/core/components/typography/typography";
 import {HTMLAttributes} from "react";
 
 type MenuItemProps = {

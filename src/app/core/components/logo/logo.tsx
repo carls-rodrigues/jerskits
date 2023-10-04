@@ -1,6 +1,6 @@
-import Box from "@/app/components/box/box";
+import Box from "@/app/core/components/box/box";
 
-import LogoIcon from '@/app/assets/icons/logo.svg'
+import LogoIcon from '@/app/core/assets/icons/logo.svg'
 
 export default function Logo() {
     return (

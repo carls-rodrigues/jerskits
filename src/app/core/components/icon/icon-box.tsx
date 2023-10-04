@@ -1,5 +1,5 @@
 import {createElement, HTMLAttributes, ReactNode} from "react";
-import Box from "@/app/components/box/box";
+import Box from "@/app/core/components/box/box";
 
 type IconBoxProps = {
     children: JSX.Element
