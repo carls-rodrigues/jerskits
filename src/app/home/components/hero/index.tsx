@@ -1,5 +1,4 @@
 'use client'
-import './hero.css'
 
 import Box from "@/app/components/box/box";
 import Typography from "@/app/components/typography/typography";
