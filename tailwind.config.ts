@@ -47,16 +47,19 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-    colors: {
-            neutral: {
-                black: '#262D33',
-                'dark-grey': '#737373',
-                'grey': '#B9B9B9',
-                'soft-grey': '#E7E7E7',
-                'light-grey': '#F3F3F3',
-                white: '#FFFFFF',
-            }
+      colors: {
+        neutral: {
+            black: '#262D33',
+            'dark-grey': '#737373',
+            'grey': '#B9B9B9',
+            'soft-grey': '#E7E7E7',
+            'light-grey': '#F3F3F3',
+            white: '#FFFFFF',
+        },
+        secondary: {
+          red: '#D6484C'
         }
+      }
     },
   },
   plugins: [],

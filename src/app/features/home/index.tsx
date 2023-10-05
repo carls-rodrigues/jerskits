@@ -7,6 +7,8 @@ import BarcelonaShirt from "@/app/core/assets/images/home/barcelona-shirt.png";
 import BarcelonaLogo from "@/app/core/assets/images/home/barcelona-logo.png";
 import LiverpoolBanner from '@/app/core/assets/images/home/liverpool-banner.png';
 import BarcelonaBanner from '@/app/core/assets/images/home/barcelona-banner.png';
+import Featured from "@/app/features/home/featured/brands";
+import KidsCollection from "@/app/features/home/featured/kids_collection";
 
 export default function Home() {
   const items = [
@@ -35,11 +37,13 @@ export default function Home() {
       description: 'The Bayern F.C. Stadium Home Shirt features highly breathable fabric to help keep sweat off your skin while you cheer for your team.This product is made from at least 75% recycled polyester fibres.'
     }
   ]
-    return (
-        <Container>
-            <Hero>
-                <HomeHero items={items} />
-            </Hero>
-        </Container>
-    )
+  return (
+    <Container>
+      <Hero>
+        <HomeHero items={items} />
+      </Hero>
+      <Featured />
+      <KidsCollection />
+    </Container>
+  )
 }

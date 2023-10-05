@@ -1,0 +1,8 @@
+.product_card {
+}
+.product_card_action {
+    visibility: hidden;
+}
+.product_card:hover .product_card_action {
+    visibility: visible;
+}
